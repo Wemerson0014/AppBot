@@ -8,7 +8,7 @@ import androidx.core.app.RemoteInput
 
 class Action(private val action: NotificationCompat.Action) {
 
-    fun sendReply(context: Context, message : String) {
+    fun sendReply(context: Context, message: String) {
         val intent = Intent()
         val bundle = Bundle()
         val remoteInputs = arrayListOf<RemoteInput>()
@@ -17,16 +17,16 @@ class Action(private val action: NotificationCompat.Action) {
         if (action?.remoteInputs != null) {
             for (input in action.remoteInputs) {
                 bundle.putCharSequence(input.resultKey, message)
-                    val newRemoteInput = RemoteInput.Builder(input.resultKey)
-                        .setLabel(input.label)
-                        .setChoices(input.choices)
-                        .setAllowFreeFormInput(input.allowFreeFormInput)
-                        .addExtras(input.extras)
-                        .build()
+                val newRemoteInput = RemoteInput.Builder(input.resultKey)
+                    .setLabel(input.label)
+                    .setChoices(input.choices)
+                    .setAllowFreeFormInput(input.allowFreeFormInput)
+                    .addExtras(input.extras)
+                    .build()
 
-                    remoteInputs.add(newRemoteInput)
-                }
+                remoteInputs.add(newRemoteInput)
             }
+        }
 
         RemoteInput.addResultsToIntent(remoteInputs.toTypedArray(), intent, bundle)
         action.actionIntent.send(context, 0, intent)

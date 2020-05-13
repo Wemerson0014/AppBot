@@ -2,14 +2,9 @@ package br.com.estudo.appbot
 
 import android.app.Notification
 import android.app.PendingIntent
-import android.content.Context
 import android.content.pm.ApplicationInfo
-import android.os.AsyncTask
-import android.os.Bundle
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import java.lang.ref.WeakReference
-import java.util.*
 
 class NotifierListener : NotificationListenerService() {
 
@@ -38,7 +33,7 @@ class NotifierListener : NotificationListenerService() {
 
             // Verifica o nome do contato e ignora resumo da mensagem e imagem recebida
             if (processName == "com.whatsapp"
-                && it.getString(Notification.EXTRA_TITLE) == "Debora Cristina"
+                && it.getString(Notification.EXTRA_TITLE) == "Leo"
                 && it.getString(Notification.EXTRA_BIG_TEXT) == null
                 && it.getString(Notification.EXTRA_SUMMARY_TEXT) == null
             ) {
@@ -47,7 +42,10 @@ class NotifierListener : NotificationListenerService() {
                 val action = Notificationutils.quickReplyAction(sbn.notification)
 
                 try {
-                    action?.sendReply(applicationContext, "Olá Debora, aqui é um robô te respondendo!!!")
+                    action?.sendReply(
+                        applicationContext,
+                        "Olá Leo, aqui é um robô te respondendo!!!"
+                    )
                 } catch (e: PendingIntent.CanceledException) {
 
                 }

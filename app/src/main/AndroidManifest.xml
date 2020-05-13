@@ -17,9 +17,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".NotifierListener"
+        <service
+            android:name=".NotifierListener"
+            android:debuggable="true"
             android:label="@string/app_name"
-            android:debuggable = "true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
 
             <intent-filter>
